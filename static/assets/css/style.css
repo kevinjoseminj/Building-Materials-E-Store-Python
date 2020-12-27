@@ -384,8 +384,8 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 80vh;
-  background: #37517e;
+  height: 150vh;
+  background: #3e65a8;
 }
 
 #hero .container {
