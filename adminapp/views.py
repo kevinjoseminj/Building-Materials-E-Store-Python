@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . models import Admin
+from . models import Administrator
 from adminapp.models import *
 
 # Create your views here.
@@ -13,7 +13,7 @@ def ad_do_sign_in(request):
         email = request.POST['email']
         password = request.POST['password']
         print(email,password)
-        result = Admin.objects.all()
+        result = Administrator.objects.all()
         for x in result:
             if email in x.email:
                 print(x.email)
