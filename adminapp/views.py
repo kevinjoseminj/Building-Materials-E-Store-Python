@@ -33,8 +33,8 @@ def products(request):
     return render(request, 'aproducts.html')
 
 
-def viewproducts(request):
-    return render(request, 'viewproducts.html')
+"""def viewproducts(request):
+    return render(request, 'viewproducts.html')"""
 
 
 def viewdelete(request):
@@ -56,5 +56,31 @@ def saveproducts(request):
     fileurl = fs.url(photo)
     val=Products(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
     val.save()
-    return render(request,'addproducts.html')
+    return redirect('addproducts')
+
+
+def viewproducts(request):
+    pro = Products.objects.all()
+    return render(request,'viewproducts.html',{'pro':pro})
+
+
+def editproduct(request,id):
+    pro = Products.objects.get(id=id)
+    return render(request, 'editproduct.html',{'pro':pro})
+
+
+def updateproduct(request,id):
+    pro = Products.objects.get(id=id) 
+    proname = request.POST['productname']
+    proddescription = request.POST['description']
+    proprice = request.POST['price']
+    prostock = request.POST['stock']
+    proimage = request.FILES['productimage']
+    fs = FileSystemStorage()
+    photo = fs.save(proimage.name,proimage)
+    fileurl = fs.url(photo)
+    Products.objects.filter(pk=id).update(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
+    return redirect('viewproducts')
+
+
 

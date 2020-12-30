@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+<nav class=" navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand br" href="#">Gyftt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link ln" href="/shome">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link ln" href="/sorders">Orders</a>
+        <a class="nav-item nav-link ln" href="/sproducts">Products</a>
+        <a class="nav-item nav-link ln" href="/sreports">Reports</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-5">
+  <form action="/updateproduct/{{pro.id}}" method="POST" class="p-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 class=" col-md-4 mx-auto text-center">Edit Product</h2>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Product Name</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="productname" value="{{pro.name}}" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Description</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" name="description" value="{{pro.description}}"
+        placeholder="Enter  Description">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Price</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="price" value="{{pro.price}}" placeholder="Enter Price">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Stock</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" name="stock" value="{{pro.stock}}"placeholder="Enter Stock">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Stock</label>
+      <input type="file" class="form-control" name="productimage" value="{{pro.image}}" placeholder="Insert Image"><br>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+{% endblock %}
