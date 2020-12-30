@@ -20,63 +20,33 @@
         </div>
     </div>
 </nav>
-<div class="container main" style="margin-top:10%;">
-    <table border="2">
-        <col width="350">
-        <col width="350">
-        <col width="350">
-        <col width="350">
-        <col width="350">
-        <col width="350">
-        <col width="350">
-        <tr>
-            <td>
-                <center>Product Name</center>
-            </td>
-            <td>
-                <center>Product Image</center>
-            </td>
-            <td>
-                <center>Customer Name</center>
-            </td>
-            <td>
-                <center>Total Amount</center>
-            </td>
-            <td>
-                <center>Delivery Address</center>
-            </td>
-            <td>
-                <center>Delivery Time & Date</center>
-            </td>
-            <td>
-                <center>Current Status</center>
-            </td>
-        </tr>
-        {% for i in tbl %}
-        <tr>
-            <td>
-                <center>{{i.citemname}}</center>
-            </td>
-            <td>
-                <center><img src="{{i.cimage}}" width="250" height="150" /></center>
-            </td>
-            <td>
-                <center>{{i.customer}}</center>
-            </td>
-            <td>
-                <center>{{i.camount}}/- Rs</center>
-            </td>
-            <td>
-                <center>{{i.caddress}}</center>
-            </td>
-            <td>
-                <center>{{i.ctime}}<br>{{i.cdate}}</center>
-            </td>
-            <td>
-                <center>{{i.cstatus}}</center>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="p-5">
+    <div class="container p-5">
+        <table class="table table-dark p-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sl No</th>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>Customer Name</th>
+                    <th>Total Amount</th>
+                    <th>Delivery Address</th>
+                    <th>Current Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>Pipe</td>
+                    <td>image</td>
+                    <td>Mebin</td>
+                    <td>1000</td>
+                    <td>Vattolil house</td>
+                    <td>Pending</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
 {% endblock %}

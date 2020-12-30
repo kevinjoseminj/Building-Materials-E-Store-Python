@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . models import Administrator
 from adminapp.models import *
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -41,5 +42,19 @@ def viewdelete(request):
 
 
 def addproducts(request):
+    return render(request,'addproducts.html')
+
+
+def saveproducts(request):
+    proname = request.POST['productname']
+    proddescription = request.POST['description']
+    proprice = request.POST['price']
+    prostock = request.POST['stock']
+    proimage = request.FILES['productimage']
+    fs = FileSystemStorage()
+    photo = fs.save(proimage.name,proimage)
+    fileurl = fs.url(photo)
+    val=Products(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
+    val.save()
     return render(request,'addproducts.html')
 
