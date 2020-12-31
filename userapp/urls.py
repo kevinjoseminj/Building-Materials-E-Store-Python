@@ -10,4 +10,6 @@ urlpatterns = [
     path('signup_form',views.signup_form,name='signup_form'),
     path('cart',views.cart,name='cart'),
     path('otpverify',views.otpverify,name='otpverify'),
+    path('userhome',views.userhome,name='userhome'),
+    path('add_to_cart/<int:id>',views.add_to_cart,name='add_to_cart'),
 ]

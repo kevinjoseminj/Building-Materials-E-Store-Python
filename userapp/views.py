@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from . models import Customer
+from django.shortcuts import render,redirect
+from adminapp.models import *
+
+from . models import Customer,Cart
 from random import randint
 from django.core.mail import send_mail
 from django.conf import settings
@@ -22,7 +24,9 @@ def signup_form(request):
     return render(request, 'signup.html')
 
 def cart(request):
-    return render(request, 'cart.html')
+    cart = Cart.objects.all()
+    
+    return render(request, 'cart.html',{'cart':cart})
 
 def do_sign_up(request):
     try:
@@ -57,10 +61,14 @@ def otpverify(request):
     if otp==code:
         codeid.verified = 'verified'
         codeid.save()
-        return render(request, 'userhome.html')
+        return redirect('cart')
     else:
         return render(request,'cverify.html',{'msg':'Entered wrong OTP'})
-            
+
+
+def userhome(request):
+    pro = Products.objects.all()
+    return render(request, 'userhome.html',{'pro':pro})      
     
 def do_sign_in(request):
     try:
@@ -70,7 +78,7 @@ def do_sign_in(request):
         for x in result:
             if email in x.email:
                 if password in x.password:
-                    return render(request, 'cart.html')
+                    return redirect('userhome')
                 else:
                     return HttpResponse('Wrong password')
             else:
@@ -78,4 +86,9 @@ def do_sign_in(request):
     except Exception as e:
         return render(request, 'login.html', {'m': 'An error occured'})
 
+def add_to_cart(request,id):
+    pro = Products.objects.get(id=id)
+    val=Cart(name=pro.name, description=pro.description, price=pro.price, image=pro.image)
+    val.save()
+    return redirect('userhome')
 
