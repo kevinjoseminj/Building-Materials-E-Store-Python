@@ -82,5 +82,14 @@ def updateproduct(request,id):
     Products.objects.filter(pk=id).update(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
     return redirect('viewproducts')
 
+def viewdelete(request):
+    pro = Products.objects.all()
+    return render(request,'viewdelete.html',{'pro':pro})
+
+def deleteproduct(request,id):
+    pro = Products.objects.get(id=id)
+    pro.delete()
+    return redirect('viewdelete')
+
 
 
