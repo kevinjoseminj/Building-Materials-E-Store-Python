@@ -71,7 +71,7 @@ def userhome(request):
     pro = Products.objects.all()
     return render(request, 'userhome.html',{'pro':pro})      
     
-    
+
 def do_sign_in(request):
     try:
         email = request.POST['email']
@@ -93,4 +93,33 @@ def add_to_cart(request,id):
     val=Cart(name=pro.name, description=pro.description, price=pro.price, image=pro.image)
     val.save()
     return redirect('userhome')
+
+def placeorder(request):
+    return render(request, 'placeorder.html')
+
+def checkout(request):
+    firstName = request.POST['firstName']
+    lastName = request.POST['lastName']
+    Username = request.POST['Username']
+    email=request.POST['email']
+    Address = request.POST['Address']
+    State = request.POST['State']
+    ziip = request.POST['zip']
+    a={}
+    if request.POST['paymentMethod']=='COD':
+        for i in ["firstName", "lastName", "Username", "email", "Address", "State", "ziip"]:
+            a[i] = eval(i)
+    return render(request, 'ordersuccess.html', {'a':a} )
+        
+    
+
+        
+        
+
+
+
+
+
+
+
 
