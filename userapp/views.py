@@ -6,6 +6,7 @@ from random import randint
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Sum
+import razorpay
 
 # Create your views here.
 
@@ -98,18 +99,30 @@ def placeorder(request):
     return render(request, 'placeorder.html')
 
 def checkout(request):
-    firstName = request.POST['firstName']
-    lastName = request.POST['lastName']
     Username = request.POST['Username']
-    email=request.POST['email']
     Address = request.POST['Address']
     State = request.POST['State']
     ziip = request.POST['zip']
     a={}
     if request.POST['paymentMethod']=='COD':
-        for i in ["firstName", "lastName", "Username", "email", "Address", "State", "ziip"]:
+        for i in ["Username", "Address", "State", "ziip"]:
             a[i] = eval(i)
-    return render(request, 'ordersuccess.html', {'a':a} )
+        return render(request, 'ordersuccess.html', {'a':a})
+    else:
+        name = Username 
+        total= Cart.objects.annotate(total=Sum('price'))
+        summ=0
+        for i in total:
+            summ+=i.price
+        print(summ)
+        amount = summ
+        client = razorpay.Client(auth=("rzp_test_BxZvEpl01zwGtx","YI8wYJqkAXi7vGiTUcOSaOgN"))
+        payment = client.order.create({'amount': amount, 'currency': 'INR','payment_capture': '1'})
+        print(payment)
+        return render(request, 'payment.html',{'payment':payment,'name':name})
+
+def success(request):
+    return render(request, "success.html")
         
     
 

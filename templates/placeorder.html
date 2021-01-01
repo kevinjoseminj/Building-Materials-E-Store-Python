@@ -15,44 +15,17 @@
                     <!--Card content-->
                     <form class="card-body " action="checkout" method="post">
                         {% csrf_token %}
-                        <!--Grid row-->
-                        <div class="row">
-                            <!--Grid column-->
-                            <div class="col-md-6 mb-2">
-                                <!--firstName-->
-                                <div class="md-form ">
-                                    <input type="text" name="firstName"id="firstName" class="form-control">
-                                    <label for="firstName"  class="">First name</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-                            <!--Grid column-->
-                            <div class="col-md-6 mb-2">
-                                <!--lastName-->
-                                <div class="md-form">
-                                    <input type="text" name="lastName" id="lastName" class="form-control">
-                                    <label for="lastName" class="">Last name</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-                        </div>
+
                         <!--Grid row-->
                         <!--Username-->
-                        <div class="md-form input-group pl-0 mb-5">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            <input type="text" name="Username" class="form-control py-0" placeholder="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-                        <!--email-->
                         <div class="md-form mb-5">
-                            <input type="text" id="email" name="email" class="form-control" placeholder="youremail@example.com">
-                            <label for="email" class="">Email (optional)</label>
+                            <input type="text" name="Username" class="form-control" placeholder="Username">
+                            <label for="username">Enter Username</label>
                         </div>
                         <!--address-->
                         <div class="md-form mb-5">
-                            <input type="text" id="address" name="Address" class="form-control" placeholder="1234 Main St">
+                            <input type="text" id="address" name="Address" class="form-control"
+                                placeholder="Enter address">
                             <label for="address" class="">Address</label>
                         </div>
                         <!--Grid row-->
@@ -97,14 +70,14 @@
                         <hr>
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" value="COD"class="custom-control-input"
-                                    checked required>
+                                <input id="credit" name="paymentMethod" type="radio" value="COD"
+                                    class="custom-control-input" checked required>
                                 <label class="custom-control-label" for="credit">COD</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" value="Online-Payment" class="custom-control-input"
-                                    required>
-                                <label class="custom-control-label" for="debit" >Online Payment</label>
+                                <input id="debit" name="paymentMethod" type="radio" value="Online-Payment"
+                                    class="custom-control-input" required>
+                                <label class="custom-control-label" for="debit">Online Payment</label>
                             </div>
                         </div>
                         <hr class="mb-4">
@@ -124,23 +97,23 @@
 </main>
 <!--Main layout-->
 
-<!--Footer-->
-<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+        <!--Footer-->
+        <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
-    <!--Call to action-->
-    <div class="pt-4">
-        <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-            target="_blank" role="button">Download MDB
-            <i class="fas fa-download ml-2"></i>
-        </a>
-        <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank"
-            role="button">Start free tutorial
-            <i class="fas fa-graduation-cap ml-2"></i>
-        </a>
-    </div>
-    <!--/.Call to action-->
-    <hr class="my-4">
-</footer>
-<!--/.Footer-->
+            <!--Call to action-->
+            <div class="pt-4">
+                <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+                    target="_blank" role="button">Download MDB
+                    <i class="fas fa-download ml-2"></i>
+                </a>
+                <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank"
+                    role="button">Start free tutorial
+                    <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+            </div>
+            <!--/.Call to action-->
+            <hr class="my-4">
+        </footer>
+        <!--/.Footer-->
 
-{% endblock %}
+        {% endblock %}

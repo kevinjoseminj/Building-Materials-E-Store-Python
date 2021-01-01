@@ -12,3 +12,4 @@ class Products(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     image = models.CharField(max_length=100)
+
