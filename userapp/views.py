@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from adminapp.models import *
-
+from django.http import HttpResponse
 from . models import Customer,Cart
+from adminapp.models import *
 from random import randint
 from django.core.mail import send_mail
 from django.conf import settings
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -25,8 +26,8 @@ def signup_form(request):
 
 def cart(request):
     cart = Cart.objects.all()
-    
-    return render(request, 'cart.html',{'cart':cart})
+    cart_item_count = Cart.objects.count()
+    return render(request, 'cart.html',{'cart':cart,'cart_item_count':cart_item_count})
 
 def do_sign_up(request):
     try:
@@ -61,7 +62,7 @@ def otpverify(request):
     if otp==code:
         codeid.verified = 'verified'
         codeid.save()
-        return redirect('cart')
+        return redirect('userhome')
     else:
         return render(request,'cverify.html',{'msg':'Entered wrong OTP'})
 
@@ -69,6 +70,7 @@ def otpverify(request):
 def userhome(request):
     pro = Products.objects.all()
     return render(request, 'userhome.html',{'pro':pro})      
+    
     
 def do_sign_in(request):
     try:
