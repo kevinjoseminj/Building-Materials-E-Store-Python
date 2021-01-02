@@ -92,4 +92,12 @@ def deleteproduct(request,id):
     return redirect('viewdelete')
 
 
+def orderlist(request):
+    order = Orders.objects.all()
+    return render(request, 'orderlist.html',{'order':order})
+
+
+def confirm(request):
+    Orders.objects.filter(status="pending").update(status="Delivered")
+    return redirect('orderlist')
 

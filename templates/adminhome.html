@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link ln" href="{% url 'home' %}">Home <span class=" sr-only">(current)</span></a>
-                <a class="nav-item nav-link ln" href="">Orders</a>
+                <a class="nav-item nav-link ln" href="{% url 'orderlist' %}">Orders</a>
                 <a class="nav-item nav-link ln" href="{% url 'products' %}">Products</a>
                 <a class="nav-item nav-link ln" href="">Reports</a>
                 <a class="nav-item nav-link ln" href="">Logout</a>
@@ -27,7 +27,7 @@
                 <tr>
                     <th>Sl No</th>
                     <th>Product Name</th>
-                    <th>Product Image</th>
+                    
                     <th>Customer Name</th>
                     <th>Total Amount</th>
                     <th>Delivery Address</th>
@@ -38,7 +38,7 @@
                 <tr>
                     <th>1</th>
                     <td>Pipe</td>
-                    <td>image</td>
+                   
                     <td>Mebin</td>
                     <td>1000</td>
                     <td>Vattolil house</td>

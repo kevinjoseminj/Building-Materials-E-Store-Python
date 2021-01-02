@@ -13,3 +13,9 @@ class Products(models.Model):
     stock = models.IntegerField()
     image = models.CharField(max_length=100)
 
+class Orders(models.Model):
+    name = models.CharField(max_length=20)
+    amount = models.IntegerField()
+    address = models.CharField(max_length=100)
+    status = models.CharField(max_length=20)
+

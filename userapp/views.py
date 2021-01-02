@@ -104,10 +104,17 @@ def checkout(request):
     State = request.POST['State']
     ziip = request.POST['zip']
     a={}
+    total= Cart.objects.annotate(total=Sum('price'))
+    summ=0
+    for i in total:
+        summ+=i.price
+    amount = summ
     if request.POST['paymentMethod']=='COD':
         for i in ["Username", "Address", "State", "ziip"]:
             a[i] = eval(i)
-        return render(request, 'ordersuccess.html', {'a':a})
+        value=Orders(name=Username,amount=amount,address=Address,status="Pending")
+        value.save()
+        return render(request, 'ordersuccess.html', {'a':a,'amt':amount})
     else:
         name = Username 
         total= Cart.objects.annotate(total=Sum('price'))
@@ -116,6 +123,8 @@ def checkout(request):
             summ+=i.price
         print(summ)
         amount = summ
+        value=Orders(name=name,amount=amount,address=Address,status="Pending")
+        value.save()
         client = razorpay.Client(auth=("rzp_test_BxZvEpl01zwGtx","YI8wYJqkAXi7vGiTUcOSaOgN"))
         payment = client.order.create({'amount': amount, 'currency': 'INR','payment_capture': '1'})
         print(payment)
