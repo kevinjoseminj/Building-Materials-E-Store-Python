@@ -20,7 +20,8 @@ def ad_do_sign_in(request):
                 print(x.email)
                 if password in x.password:
                     print(x.password)
-                    return render(request, 'adminhome.html')
+                    order = Orders.objects.all()
+                    return render(request, 'adminhome.html',{'order':order})  
                 else:
                     return HttpResponse('Wrong password')
             else:
@@ -33,10 +34,6 @@ def products(request):
     return render(request, 'aproducts.html')
 
 
-"""def viewproducts(request):
-    return render(request, 'viewproducts.html')"""
-
-
 def viewdelete(request):
     return render(request, 'viewdelete.html')
 
@@ -47,7 +44,6 @@ def addproducts(request):
 
 def saveproducts(request):
     proname = request.POST['productname']
-    proddescription = request.POST['description']
     proprice = request.POST['price']
     prostock = request.POST['stock']
     proimage = request.FILES['productimage']
@@ -94,7 +90,7 @@ def deleteproduct(request,id):
 
 def orderlist(request):
     order = Orders.objects.all()
-    return render(request, 'orderlist.html',{'order':order})
+    return render(request, 'adminhome.html',{'order':order})
 
 
 def confirm(request):

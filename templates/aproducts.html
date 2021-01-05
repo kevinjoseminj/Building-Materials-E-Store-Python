@@ -10,10 +10,9 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link ln" href="/shome">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link ln" href="/sorders">Orders</a>
+        <a class="nav-item nav-link ln" href="{% url 'home' %}">Home</a>
+        <a class="nav-item nav-link ln" href="{% url 'orderlist' %}">Orders</a>
         <a class="nav-item nav-link ln" href="{% url 'products' %}">Products</a>
-        <a class="nav-item nav-link ln" href="/sreports">Reports</a>
       </div>
     </div>
   </div>
