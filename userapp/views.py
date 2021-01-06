@@ -28,7 +28,13 @@ def signup_form(request):
 def cart(request):
     cart = Cart.objects.all()
     cart_item_count = Cart.objects.count()
-    return render(request, 'cart.html',{'cart':cart,'cart_item_count':cart_item_count})
+    total= Cart.objects.annotate(total=Sum('price'))
+    summ=0
+    for i in total:
+        summ+=i.price
+    amount = summ
+    print(amount)
+    return render(request, 'cart.html',{'cart':cart,'cart_item_count':cart_item_count,'amt':amount})
 
 def do_sign_up(request):
     try:
@@ -91,7 +97,7 @@ def do_sign_in(request):
 
 def add_to_cart(request,id):
     pro = Products.objects.get(id=id)
-    val=Cart(name=pro.name, description=pro.description, price=pro.price, image=pro.image)
+    val=Cart(name=pro.name, price=pro.price, image=pro.image)
     val.save()
     return redirect('userhome')
 
