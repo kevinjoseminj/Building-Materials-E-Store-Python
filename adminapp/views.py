@@ -13,11 +13,9 @@ def ad_do_sign_in(request):
     try:
         email = request.POST['email']
         password = request.POST['password']
-        print(email,password)
         result = Administrator.objects.all()
         for x in result:
             if email in x.email:
-                print(x.email)
                 if password in x.password:
                     print(x.password)
                     order = Orders.objects.all()
@@ -45,12 +43,11 @@ def addproducts(request):
 def saveproducts(request):
     proname = request.POST['productname']
     proprice = request.POST['price']
-    prostock = request.POST['stock']
     proimage = request.FILES['productimage']
     fs = FileSystemStorage()
     photo = fs.save(proimage.name,proimage)
     fileurl = fs.url(photo)
-    val=Products(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
+    val=Products(name=proname, price=proprice, image=fileurl)
     val.save()
     return redirect('addproducts')
 
@@ -68,14 +65,12 @@ def editproduct(request,id):
 def updateproduct(request,id):
     pro = Products.objects.get(id=id) 
     proname = request.POST['productname']
-    proddescription = request.POST['description']
     proprice = request.POST['price']
-    prostock = request.POST['stock']
     proimage = request.FILES['productimage']
     fs = FileSystemStorage()
     photo = fs.save(proimage.name,proimage)
     fileurl = fs.url(photo)
-    Products.objects.filter(pk=id).update(name=proname, description=proddescription, price=proprice, stock=prostock, image=fileurl)
+    Products.objects.filter(pk=id).update(name=proname,price=proprice,image=fileurl)
     return redirect('viewproducts')
 
 def viewdelete(request):
@@ -93,7 +88,7 @@ def orderlist(request):
     return render(request, 'adminhome.html',{'order':order})
 
 
-def confirm(request):
-    Orders.objects.filter(status="pending").update(status="Delivered")
+def confirm(request,id):
+    Orders.objects.filter(id=id).update(status="Delivered")
     return redirect('orderlist')
 

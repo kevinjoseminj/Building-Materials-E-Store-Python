@@ -29,6 +29,7 @@
                     <th>Total Amount</th>
                     <th>Delivery Address</th>
                     <th>Current Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                     <td>{{i.amount}}</td>
                     <td>{{i.address}}</td>
                     <td>{{i.status}}</td>
+                    <td><a href="confirm/{{i.id}}">Confirm</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

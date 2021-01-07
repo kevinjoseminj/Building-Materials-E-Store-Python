@@ -13,7 +13,7 @@ urlpatterns = [
     path('updateproduct/<int:id>',views.updateproduct,name='updateproduct'),
     path('deleteproduct/<int:id>',views.deleteproduct,name='deleteproduct'),
     path('orderlist',views.orderlist,name='orderlist'),
-    path('confirm',views.confirm,name='confirm'),
+    path('confirm/<int:id>',views.confirm,name='confirm'),
 
     
 ]

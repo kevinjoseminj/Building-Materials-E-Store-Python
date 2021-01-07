@@ -11,11 +11,11 @@
         </div>
         <div class="form-group">
             <label for="">Amount</label>
-            <input type="text" class="form-control" value="{{payment.amount}}" name="amt">
+            <input type="text" class="form-control" value="{{amount}}" name="amt">
         </div>
         <!-- RAZORPAY INTEGRATION HERE -->
         <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_BxZvEpl01zwGtx"
-            data-amount="{{payment.amount}}" data-currency="INR" data-order_id="{{payment.id}}"
+            data-amount={{payment.amt}} data-currency="INR" data-order_id="{{payment.id}}"
             data-buttontext="Pay with Razorpay" data-name="Razorpay Merchant" data-description="Pay With Razorpay"
             data-image="https://cdn4.vectorstock.com/i/1000x1000/70/53/mobile-payment-icon-flat-design-vector-6827053.jpg"
             data-prefill.name="PC" data-prefill.email="pc@kevinjoseminj.com" data-theme.color="blue">

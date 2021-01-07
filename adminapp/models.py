@@ -4,12 +4,12 @@ from django.db import models
 
 class Administrator(models.Model):
     email = models.CharField(max_length=50)
-    password =  models.CharField(max_length=20)
+    password =  models.CharField(max_length=100)
     class Meta:
         db_table = "Administrator"
 
 class Products(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=100,null=True)
     price = models.IntegerField()
     image = models.CharField(max_length=100)
 
