@@ -97,7 +97,11 @@ def do_sign_in(request):
 
 def add_to_cart(request,id):
     pro = Products.objects.get(id=id)
+<<<<<<< HEAD
     val=Cart(name=pro.name,price=pro.price, image=pro.image)
+=======
+    val=Cart(name=pro.name, price=pro.price, image=pro.image)
+>>>>>>> fd8b9a1fca5c0bfb1c7eca1f00cd0de95c9a1467
     val.save()
     return redirect('userhome')
 
