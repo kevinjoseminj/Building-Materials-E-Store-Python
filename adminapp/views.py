@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
-from . models import Administrator
-from adminapp.models import *
+from . models import Administrator,Products,Orders
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
@@ -21,19 +20,15 @@ def ad_do_sign_in(request):
                     order = Orders.objects.all()
                     return render(request, 'adminhome.html',{'order':order})  
                 else:
-                    return HttpResponse('Wrong password')
+                    return render(request, 'asign.html',{'m':'Wrong password'})
             else:
-                return HttpResponse('Wrong username.')
+                return render(request, 'asign.html',{'m':'Wrong Username'})
     except Exception as e:
         return render(request, 'asign.html', {'m': 'An error occured'})
 
 
 def products(request):
     return render(request, 'aproducts.html')
-
-
-def viewdelete(request):
-    return render(request, 'viewdelete.html')
 
 
 def addproducts(request):
