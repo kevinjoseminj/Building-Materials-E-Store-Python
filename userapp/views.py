@@ -146,6 +146,19 @@ def checkout(request):
         amt=amount*100
         value=Orders(name=name,amount=amount,address=Address,status="Pending")
         value.save()
+        cart = Cart.objects.all()
+        cart.delete()
+        subject = 'Order Details'
+        m = ' Your Order Details '
+        n = Username
+        o = 'Delivery Address:\t'+value.address
+        q = 'Total amount paid:\t'+str(summ)+' /- Rs'
+        messagedupe = m+'\n\n'+'Dear\t'+n+','+'\n'+o+'\n'+q
+        print(messagedupe)
+        message = messagedupe
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        send_mail( subject, message, email_from, recipient_list )
         client = razorpay.Client(auth=("rzp_test_BxZvEpl01zwGtx","YI8wYJqkAXi7vGiTUcOSaOgN"))
         payment = client.order.create({'amount': amt, 'currency': 'INR','payment_capture': '1'})
         print(payment)
@@ -153,6 +166,14 @@ def checkout(request):
 
 def success(request):
     return render(request, "success.html")
+
+def logout(request):
+    try:
+        del request.session['userid']
+    except KeyError:
+        pass
+    return render(request,'home.html')
+    
         
     
 
