@@ -1,41 +1,29 @@
 {% extends 'base.html' %}
 {%load static %}
 {% block content %}
-<!--Main layout-->
 <main class="mt-5 pt-4">
     <div class="container wow fadeIn">
-        <!-- Heading -->
         <h2 class="my-5 h2 text-center">Checkout form</h2>
-        <!--Grid row-->
         <div class="row">
-            <!--Grid column-->
             <div class="col-md-8 mb-4">
-                <!--Card-->
                 <div class="card">
-                    <!--Card content-->
                     <form class="card-body " action="checkout" method="post">
                         {% csrf_token %}
-
-                        <!--Grid row-->
-                        <!--Username-->
-                        <div class="md-form mb-5">
-                            <input type="text" name="Username" class="form-control" placeholder="Username">
+                        <div class="md-form ">
                             <label for="username">Enter Username</label>
+                            <input type="text" name="Username" class="form-control" placeholder="Username">  
                         </div>
-                        <div class="md-form mb-5">
-                            <input type="email" name="email" id="username" class="form-control">
-                            <label for="username">Email</label><br>
-
+                        <div class="md-form ">
+                            <label for="email">Email</label><br>
+                            <input type="email" name="email" id="username" placeholder="Email" class="form-control">   
                         </div>
-                        <!--address-->
-                        <div class="md-form mb-5">
+                        <div class="md-form ">
+                            <label for="address" class="">Address</label>
                             <input type="text" id="address" name="Address" class="form-control"
                                 placeholder="Enter address">
-                            <label for="address" class="">Address</label>
                         </div>
-                        <!--Grid row-->
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="col-lg-4 col-md-6">
                                 <label for="state">State</label>
                                 <select name="State" class="custom-select d-block w-100" id="state" required>
                                     <option value="">Choose...</option>
@@ -48,17 +36,13 @@
                                     Please provide a valid state.
                                 </div>
                             </div>
-                            <!--Grid column-->
-                            <!--Grid column-->
-                            <div class="col-lg-4 col-md-6 mb-4">
-
+                            <div class="col-lg-4 col-md-6">
                                 <label for="zip">Zip</label>
                                 <input type="text" name="zip" class="form-control" id="zip" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Zip code required.
                                 </div>
                             </div>
-                            <!--Grid column-->
                         </div>
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
@@ -72,40 +56,13 @@
                                 <label class="custom-control-label" for="debit">Online Payment</label>
                             </div>
                         </div>
-                        <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
                     </form>
                 </div>
-                <!--/.Card-->
             </div>
-            <!--Grid column-->
-            <!--Grid column-->
             <div class="col-md-4 mb-4">
             </div>
-            <!--Grid column-->
         </div>
-        <!--Grid row--
     </div>
 </main>
-<!--Main layout-->
-
-        <!--Footer-->
-        <footer class="page-footer text-center font-small mt-4 wow fadeIn">
-
-            <!--Call to action-->
-            <div class="pt-4">
-                <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                    target="_blank" role="button">Download MDB
-                    <i class="fas fa-download ml-2"></i>
-                </a>
-                <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank"
-                    role="button">Start free tutorial
-                    <i class="fas fa-graduation-cap ml-2"></i>
-                </a>
-            </div>
-            <!--/.Call to action-->
-            <hr class="my-4">
-        </footer>
-        <!--/.Footer-->
-
-        {% endblock %}
+{% endblock %}

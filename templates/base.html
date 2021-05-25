@@ -22,7 +22,7 @@ font-family: sans-serif;
 <body>
   <div class="bs-example">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a href="/" class="navbar-brand">Building Materials E-Store</a>
+        <a href="{% url 'home' %}" class="navbar-brand">Building Materials E-Store</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,6 @@ font-family: sans-serif;
             <div class="navbar-nav">    
         </div>
             <div class="navbar-nav">
-                <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                 <a href="{% url 'asignin' %}" class="nav-item nav-link">Admin login</a>
                 <a href="{% url 'cart' %}" class="nav-item nav-link">Cart</a>
                 <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
